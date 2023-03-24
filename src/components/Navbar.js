@@ -1,5 +1,3 @@
-import logo from '../logo_3.png';
-import fullLogo from '../full_logo.png';
 import {
   BrowserRouter as Router,
   Switch,
@@ -42,13 +40,13 @@ async function connectWebsite() {
       //alert('Incorrect network! Switch your metamask network to Rinkeby');
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x5' }],
+        params: [{ chainId: '0x11155111' }],
      })
     }  
     await window.ethereum.request({ method: 'eth_requestAccounts' })
       .then(() => {
         updateButton();
-        console.log("here");
+        // console.log("here");
         getAddress();
         window.location.replace(location.pathname)
       });
@@ -58,7 +56,7 @@ async function connectWebsite() {
     let val = window.ethereum.isConnected();
     if(val)
     {
-      console.log("here");
+      // console.log("here");
       getAddress();
       toggleConnect(val);
       updateButton();
@@ -75,9 +73,9 @@ async function connectWebsite() {
           <ul className='flex items-end justify-between py-3 bg-transparent text-white pr-5'>
           <li className='flex items-end ml-5 pb-2'>
             <Link to="/">
-            <img src={fullLogo} alt="" width={120} height={120} className="inline-block -mt-2"/>
+            {/* <img src={logo} alt="" width={20} height={30} className="inline-block -mt-2"/> */}
             <div className='inline-block font-bold text-xl ml-2'>
-              NFT Marketplace
+              AI Animator
             </div>
             </Link>
           </li>
