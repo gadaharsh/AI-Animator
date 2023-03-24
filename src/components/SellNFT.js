@@ -81,11 +81,11 @@ export default function SellNFT () {
             window.location.replace("/")
         }
         catch(e) {
-            alert( "Upload error"+e )
+            alert( "Upload error: "+e )
         }
     }
 
-    console.log("Working", process.env);
+    // console.log("Working", process.env);
     return (
         <div className="">
         <Navbar></Navbar>

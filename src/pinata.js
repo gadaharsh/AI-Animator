@@ -5,21 +5,22 @@ const secret = process.env.REACT_APP_PINATA_SECRET;
 const axios = require('axios');
 const FormData = require('form-data');
 
-export const uploadJSONToIPFS = async(JSONBody) => {
+export const uploadJSONToIPFS = async (JSONBody) => {
     const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
     //making axios POST request to Pinata ⬇️
-    return axios 
+    return axios
         .post(url, JSONBody, {
             headers: {
+                // 'Accept': 'text/plain',
                 pinata_api_key: key,
                 pinata_secret_api_key: secret,
             }
         })
         .then(function (response) {
-           return {
-               success: true,
-               pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
-           };
+            return {
+                success: true,
+                pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
+            };
         })
         .catch(function (error) {
             console.log(error)
@@ -28,13 +29,13 @@ export const uploadJSONToIPFS = async(JSONBody) => {
                 message: error.message,
             }
 
-    });
+        });
 };
 
-export const uploadFileToIPFS = async(file) => {
+export const uploadFileToIPFS = async (file) => {
     const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
     //making axios POST request to Pinata ⬇️
-    
+
     let data = new FormData();
     data.append('file', file);
 
@@ -64,10 +65,11 @@ export const uploadFileToIPFS = async(file) => {
     });
     data.append('pinataOptions', pinataOptions);
 
-    return axios 
+    return axios
         .post(url, data, {
             maxBodyLength: 'Infinity',
             headers: {
+                // 'Accept': 'text/plain',
                 'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
                 pinata_api_key: key,
                 pinata_secret_api_key: secret,
@@ -76,9 +78,9 @@ export const uploadFileToIPFS = async(file) => {
         .then(function (response) {
             console.log("image uploaded", response.data.IpfsHash)
             return {
-               success: true,
-               pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
-           };
+                success: true,
+                pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
+            };
         })
         .catch(function (error) {
             console.log(error)
@@ -87,5 +89,5 @@ export const uploadFileToIPFS = async(file) => {
                 message: error.message,
             }
 
-    });
+        });
 };
