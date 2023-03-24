@@ -1,3 +1,5 @@
+require("dotenv").config()
+// above line solved to hardhat compile error
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 const fs = require('fs');
@@ -17,15 +19,8 @@ module.exports = {
     hardhat: {
       chainId: 1337
     },
-    mumbai: {
-      url: `https://polygon-mumbai.g.alchemy.com/v2/nAhiCHKvZkhkp4A7PkkCIBON0-BXW26d`,
-      //accounts: [process.env.privateKey]
-    },
-    matic: {
-      url: "https://polygon-mainnet.g.alchemy.com/v2/nAhiCHKvZkhkp4A7PkkCIBON0-BXW26d",
-      //accounts: [process.env.privateKey]
-    },
-    goerli: {
+    
+    sepolia: {
       url: process.env.REACT_APP_ALCHEMY_API_URL,
       accounts: [ process.env.REACT_APP_PRIVATE_KEY ]
     }
